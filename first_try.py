@@ -131,13 +131,26 @@ def calculate_hyperbolic_cosine(x, n=5):
         ch_x += (x ** (2 * i)) / factorial(2 * i)
     return ch_x
 
+def calculate_natural_log(x, n=5):
+    """Вычисляет натуральный логарифм ln(1-x) с использованием ряда Тейлора."""
+    if x <= -1 or x > 1:
+        raise ValueError("x должен находиться в интервале (-1, 1]")
+
+    ln_value = 0
+    for i in range(1, n + 1):
+        ln_value += (x ** i) / i
+
+    return -ln_value
+
+
 
 def main():
     while True:
         print('     МЕНЮ     ')
         print('1. Ряд Маклорена для экспоненты')
         print('2. Ряд Маклорена для гиперболического косинуса.')
-        print('3. Выход')
+        print('3. Ряд Маклорена для логарифма')
+        print('4. Выход')
         
         choice = input('Выберите пункт меню: ')
         if choice == '1':
@@ -155,10 +168,18 @@ def main():
             except ValueError:
                 print('Ошибка. Введите числа.')
         elif choice == '3':
+            try:
+                x = float(input("Введите значение x: "))
+                result = calculate_natural_log(x)
+                print(f"Приближенное значение ln(1-x) = {result}")
+            except ValueError:
+                print('Ошибка. Введите числа.')
+        elif choice == '4':
             print('Выход из программы')
             break
         else:
             print('Ошибка. Выберите правильный пункт меню.')
+
 
 if __name__ == '__main__':
     main()
