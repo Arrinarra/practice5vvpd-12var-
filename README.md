@@ -57,6 +57,11 @@ print(result)  # Output: 1.5430806348152437
 
 ![2024-12-24_20-16-03](https://github.com/user-attachments/assets/639d3eb9-06ba-4600-9f91-752a81162c27)
 
+функцию, вычисляющую значение экспоненты:
+
+![2024-12-24_20-16-03](https://github.com/user-attachments/assets/9ad7c8c1-3070-4880-b2e6-8eb937ab5843)
+
+
 
 ## Ссылки
 
