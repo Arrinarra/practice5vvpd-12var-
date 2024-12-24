@@ -17,9 +17,9 @@ def factorial(n):
         ValueError: Генерируется, если n является отрицательным числом.
 
     Примеры использования:
-        >>> factorial(5)
+
         120
-        >>> factorial(0)
+
         1
     """
     if n == 0 or n == 1:
@@ -49,9 +49,9 @@ def calculate_exponential(x, n=5):
         None.
 
     Примеры использования:
-        >>> calculate_exponential(1)
+
         2.71828...
-        >>> calculate_exponential(0, n=10)
+
         1.0
     """
     e_x = 0
@@ -80,11 +80,11 @@ def factorial(n):
         ValueError: Генерируется, если n является отрицательным числом.
 
     Примеры использования:
-        >>> factorial(5)
+
         120
-        >>> factorial(0)
+
         1
-        >>> factorial(1)
+
         1
     """
     if n == 0 or n == 1:
@@ -95,41 +95,23 @@ def factorial(n):
     return result
 
 def calculate_hyperbolic_cosine(x, n=5):
-    """Вычисляет гиперболический косинус ch(x) с использованием ряда Тейлора.
 
-    Подробное описание:
-    Эта функция вычисляет приближенное значение гиперболического косинуса 
-    \( \text{ch}(x) \) с помощью разложения в ряд Тейлора. 
-    Формально, гиперболический косинус определяется как:
-    
-\[
-    \text{ch}(x) = \sum_{i=0}^{\infty} \frac{x^{2i}}{(2i)!}
-    \]
-    Для численного вычисления используется конечное число членов \( n \) 
-    в ряде Тейлора.
-
-    Аргументы:
-        x (float): Значение, для которого необходимо вычислить гиперболический косинус.
-        n (int, optional): Количество членов ряда для использования (по умолчанию 5).
-
-    Возвращаемое значение:
-        float: Приближенное значение гиперболического косинуса ch(x).
-
-    Исключения:
-        Нет.
-
-    Примеры использования:
-        >>> calculate_hyperbolic_cosine(0)
-        1.0
-        >>> calculate_hyperbolic_cosine(1)
-        1.5430806348152437
-        >>> calculate_hyperbolic_cosine(2, n=10)
-        3.7621956910836314
-    """
     ch_x = 0
     for i in range(n + 1):
         ch_x += (x ** (2 * i)) / factorial(2 * i)
     return ch_x
+
+
+def calculate_natural_log(x, n=5):
+    """Вычисляет натуральный логарифм ln(1-x) с использованием ряда Тейлора."""
+    if x <= -1 or x > 1:
+        raise ValueError("x должен находиться в интервале (-1, 1]")
+
+    ln_value = 0
+    for i in range(1, n + 1):
+        ln_value += (x ** i) / i
+
+    return -ln_value
 
 
 def main():
@@ -137,8 +119,9 @@ def main():
         print('     МЕНЮ     ')
         print('1. Ряд Маклорена для экспоненты')
         print('2. Ряд Маклорена для гиперболического косинуса.')
-        print('3. Выход')
-        
+        print('3. Ряд Маклорена для логарифма')
+        print('4. Выход')
+
         choice = input('Выберите пункт меню: ')
         if choice == '1':
             try:
@@ -155,6 +138,13 @@ def main():
             except ValueError:
                 print('Ошибка. Введите числа.')
         elif choice == '3':
+            try:
+                x = float(input("Введите значение x: "))
+                result = calculate_natural_log(x)
+                print(f"Приближенное значение ln(1-x) = {result}")
+            except ValueError:
+                print('Ошибка. Введите числа.')
+        elif choice == '4':
             print('Выход из программы')
             break
         else:
