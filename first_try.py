@@ -17,11 +17,6 @@ def calculate_exponential(x, n=5):
         e_x += (x ** i) / factorial(i)
     return e_x
 
-# Запрос ввода от пользователя
-x = float(input("Введите значение x: "))
-result = calculate_exponential(x)
-print(f"Приближенное значение e^{x} = {result}")
-
 '''12 вариант. 2 функция'''
 
 def factorial(n):
@@ -40,7 +35,34 @@ def calculate_hyperbolic_cosine(x, n=5):
         ch_x += (x ** (2 * i)) / factorial(2 * i)
     return ch_x
 
-# Запрос ввода от пользователя
-x = float(input("Введите значение x: "))
-result = calculate_hyperbolic_cosine(x)
-print(f"Приближенное значение ch({x}) = {result}")
+
+def main():
+    while True:
+        print('     МЕНЮ     ')
+        print('1. Ряд Маклорена для экспоненты')
+        print('2. Ряд Маклорена для гиперболического косинуса.')
+        print('3. Выход')
+        
+        choice = input('Выберите пункт меню: ')
+        if choice == '1':
+            try:
+                x = float(input("Введите значение x: "))
+                result = calculate_exponential(x)
+                print(f"Приближенное значение e^{x} = {result}")
+            except ValueError:
+                print('Ошибка. Введите числа.')
+        elif choice == '2':
+            try:
+                x = float(input("Введите значение x: "))
+                result = calculate_hyperbolic_cosine(x)
+                print(f"Приближенное значение ch({x}) = {result}")
+            except ValueError:
+                print('Ошибка. Введите числа.')
+        elif choice == '3':
+            print('Выход из программы')
+            break
+        else:
+            print('Ошибка. Выберите правильный пункт меню.')
+
+if __name__ == '__main__':
+    main()
